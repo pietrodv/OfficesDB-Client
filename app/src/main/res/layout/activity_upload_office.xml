@@ -37,83 +37,27 @@
         android:layout_marginTop="8dp"
         android:hint="price €" />
 
-    <!--<TextView
-        android:id="@+id/input_date_from"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="18sp"
-        android:text="Available From: DD/MM/YY "/>
-
-    <TextView
-        android:id="@+id/input_date_to"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="18sp"
-        android:text="Available Until: DD/MM/YY "/>-->
-
-    <!--<Spinner
-        android:id="@+id/input_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Team Minimum Size:" />
-
-        <Spinner
-            android:id="@+id/input_team_min_size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Team Maximum Size:" />
-
-        <Spinner
-            android:id="@+id/input_team_max_size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-    </LinearLayout>
-
     <Button
-        android:id="@+id/input_dates"
+        android:id="@+id/input_photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:drawable/btn_default"
-        android:text="choose available dates" />-->
+        android:text="1. Select photo" />
 
-    <Button
-        android:id="@+id/input_image"
+    <ImageView
+        android:id="@+id/show_photo"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center" />
+
+    <!--<Button
+        android:id="@+id/upload_photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:drawable/btn_default"
-        android:text="upload image" />
+        android:text="2. Upload photo to S3" />-->
 
     <Button
         android:id="@+id/save_upload_office"

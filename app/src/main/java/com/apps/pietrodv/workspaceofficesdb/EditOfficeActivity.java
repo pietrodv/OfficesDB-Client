@@ -1,18 +1,16 @@
 package com.apps.pietrodv.workspaceofficesdb;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import java.io.File;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,6 +26,7 @@ public class EditOfficeActivity extends AppCompatActivity {
     Toast officeUpdated, officeDeleted, errorCall;
     Integer officeId;
     Office office;
+    File photo;
 
 
     @Override
@@ -55,6 +54,7 @@ public class EditOfficeActivity extends AppCompatActivity {
         editPrice.setText(office.getPrice());
         Picasso.get().load(office.getPhoto()).resize(180,120).into(editPhoto);
         officeId = office.getId();
+        photo = new File(office.getPhoto());
 
         //Set the onClick methods for the buttons
         updateOffice.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +70,7 @@ public class EditOfficeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                deletePhotoS3();
                 deleteOffice();
 
             }
@@ -85,8 +86,8 @@ public class EditOfficeActivity extends AppCompatActivity {
 
         //The main purpose of Retrofit is to create HTTP calls from the Java interface based on the annotation associated with each method. This is achieved by just passing the interface class as parameter to the create method
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-
-        Call call = apiInterface.updateOffice(officeId, editTitle.getText().toString(), editDescription.getText().toString(), editPrice.getText().toString());
+        // Create a File object from photo path, so I can use photo.getName()
+        Call call = apiInterface.updateOffice(officeId, editTitle.getText().toString(), editDescription.getText().toString(), editPrice.getText().toString(), photo.getName());
 
         call.enqueue(new Callback() {
             @Override
@@ -126,9 +127,12 @@ public class EditOfficeActivity extends AppCompatActivity {
                 officeDeleted.show();
 
                 //Clear all fields
-                editTitle.getText().clear();
-                editDescription.getText().clear();
-                editPrice.getText().clear();
+                updateOffice.setVisibility(View.INVISIBLE);
+                editPhoto.setVisibility(View.INVISIBLE);
+                editTitle.setVisibility(View.INVISIBLE);
+                editDescription.setVisibility(View.INVISIBLE);
+                editPrice.setVisibility(View.INVISIBLE);
+                deleteOffice.setVisibility(View.INVISIBLE);
 
             }
 
@@ -142,6 +146,36 @@ public class EditOfficeActivity extends AppCompatActivity {
         });
 
     }
+
+    public void deletePhotoS3(){
+
+        //Obtain an instance of Retrofit by calling the static method.
+        Retrofit retrofit = NetworkClient.getRetrofitClient();
+
+        //The main purpose of Retrofit is to create HTTP calls from the Java interface based on the annotation associated with each method. This is achieved by just passing the interface class as parameter to the create method
+        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+
+        Call call = apiInterface.deletePhotoS3(photo.getName());
+
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+
+                Toast.makeText(getApplicationContext(), "photo deleted", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+
+                Toast.makeText(getApplicationContext(), "error photo call", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
+
+
 
 
 }

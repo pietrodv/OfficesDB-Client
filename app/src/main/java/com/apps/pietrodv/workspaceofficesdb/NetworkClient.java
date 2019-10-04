@@ -5,7 +5,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkClient {
 
-    public static final String BASE_URL = "http://192.168.1.85:8080";
+    // Heroku
+    // public static final String BASE_URL = "https://spring-office.herokuapp.com";
+    // Localhost cozylisbon1
+    public static final String BASE_URL = "http://192.168.1.90:8080";
     public static Retrofit retrofit;
 
     //This public static method will return Retrofit client anywhere in the application

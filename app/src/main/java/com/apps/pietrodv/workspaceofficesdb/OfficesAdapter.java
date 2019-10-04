@@ -40,7 +40,6 @@ public class OfficesAdapter extends RecyclerView.Adapter<OfficesAdapter.OfficeVi
     @Override
     public void onBindViewHolder(@NonNull final OfficeViewHolder holder, final int position) {
 
-
         // set the data in items
         holder.titleTextView.setText((officesList.get(position).getTitle()));
         holder.priceTextView.setText((officesList.get(position).getPrice()));
@@ -63,13 +62,11 @@ public class OfficesAdapter extends RecyclerView.Adapter<OfficesAdapter.OfficeVi
 
     }
 
-
     //Repeat as many times as the size of the List<Office>
     @Override
     public int getItemCount() {
         return officesList.size();
     }
-
 
     //PUBLIC CLASS which set the ViewHolder for the single office row
     public class OfficeViewHolder extends RecyclerView.ViewHolder {
