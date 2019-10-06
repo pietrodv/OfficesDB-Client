@@ -1,4 +1,4 @@
-package com.apps.pietrodv.workspaceofficesdb;
+package com.apps.pietrodv.officesdb;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

@@ -1,4 +1,4 @@
-package com.apps.pietrodv.workspaceofficesdb;
+package com.apps.pietrodv.officesdb;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,13 +17,10 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.util.stream.IntStream;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

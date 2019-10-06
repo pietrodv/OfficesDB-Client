@@ -1,4 +1,4 @@
-package com.apps.pietrodv.workspaceofficesdb;
+package com.apps.pietrodv.officesdb;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

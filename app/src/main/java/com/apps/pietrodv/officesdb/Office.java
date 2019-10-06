@@ -1,4 +1,4 @@
-package com.apps.pietrodv.workspaceofficesdb;
+package com.apps.pietrodv.officesdb;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
