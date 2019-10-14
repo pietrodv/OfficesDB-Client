@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.util.UUID;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -30,11 +31,11 @@ public class UploadOfficeActivity extends AppCompatActivity {
 
     private static int SELECT_PICTURE = 1;
     //Context set for calendar
-    final Context context = this;
+    //final Context context = this;
 
     EditText inputTitle, inputDescription, inputPrice;
     //TextView inputDateFrom, inputDateTo;
-    Button saveOffice, inputPhoto, uploadPhoto;
+    Button saveOffice, inputPhoto;
     Toast fillAllFields, officeSaved, errorCall;
     ImageView showPhoto;
     String keyname;
@@ -51,28 +52,21 @@ public class UploadOfficeActivity extends AppCompatActivity {
 
         //input photo
         inputPhoto = findViewById(R.id.input_photo);
-        inputPhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        inputPhoto.setOnClickListener((View v) -> {
 
                 addImage();
 
-            }
         });
 
         saveOffice = findViewById(R.id.save_upload_office);
-        saveOffice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        saveOffice.setOnClickListener((View v) -> {
 
                 if(validateAdd(inputTitle,inputDescription,inputPrice)){
-                    keyname = inputTitle.getText().toString().toLowerCase().replaceAll("\\s+","") + ".jpg";
+                    keyname = UUID.randomUUID().toString() + ".jpg";
                     uploadPhotoToS3();
                     addOffice();
-
                 }
 
-            }
         });
 
     }
@@ -133,9 +127,9 @@ public class UploadOfficeActivity extends AppCompatActivity {
         // Create MultipartBody.Part using file request-body,file name and part name
         MultipartBody.Part file = MultipartBody.Part.createFormData("uploadfile", "photo", fileReqBody);
         //Create request body with text description and text media type
-        //RequestBody description = RequestBody.create(MediaType.parse("text/plain"), "image-type");
+        RequestBody name = RequestBody.create(MediaType.parse("text/plain"), keyname);
 
-        Call call = apiInterface.uploadMultipartFile(keyname, file);
+        Call call = apiInterface.uploadMultipartFile(name, file);
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {

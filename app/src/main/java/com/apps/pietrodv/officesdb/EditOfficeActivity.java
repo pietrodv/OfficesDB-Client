@@ -1,5 +1,8 @@
 package com.apps.pietrodv.officesdb;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -57,23 +60,17 @@ public class EditOfficeActivity extends AppCompatActivity {
         photo = new File(office.getPhoto());
 
         //Set the onClick methods for the buttons
-        updateOffice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        updateOffice.setOnClickListener((View v) -> {
 
                 updateOffice();
 
-            }
         });
 
-        deleteOffice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        deleteOffice.setOnClickListener((View v) -> {
 
-                deletePhotoS3();
-                deleteOffice();
+            deletePhotoS3();
+            deleteOffice();
 
-            }
         });
 
     }
@@ -125,15 +122,7 @@ public class EditOfficeActivity extends AppCompatActivity {
 
                 //Toast
                 officeDeleted.show();
-
-                //Clear all fields
-                updateOffice.setVisibility(View.INVISIBLE);
-                editPhoto.setVisibility(View.INVISIBLE);
-                editTitle.setVisibility(View.INVISIBLE);
-                editDescription.setVisibility(View.INVISIBLE);
-                editPrice.setVisibility(View.INVISIBLE);
-                deleteOffice.setVisibility(View.INVISIBLE);
-
+                finish();
             }
 
             @Override

@@ -19,20 +19,14 @@ public class MainActivity extends AppCompatActivity {
         uploadOffice = findViewById(R.id.upload_office);
         updateOffice = findViewById(R.id.update_office);
 
-        uploadOffice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        uploadOffice.setOnClickListener((View v) -> {
                 Intent goToUpload = new Intent(getApplicationContext(), UploadOfficeActivity.class );
                 startActivity(goToUpload);
-            }
         });
 
-        updateOffice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        updateOffice.setOnClickListener((View v) -> {
                 Intent goToUpdate = new Intent(getApplicationContext(), UpdateOfficeActivity.class );
                 startActivity(goToUpdate);
-            }
         });
     }
 }

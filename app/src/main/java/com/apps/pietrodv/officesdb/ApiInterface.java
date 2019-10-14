@@ -3,6 +3,7 @@ package com.apps.pietrodv.officesdb;
 import java.util.List;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.DELETE;
@@ -33,7 +34,7 @@ public interface ApiInterface {
 
     @Multipart
     @POST("/office/file/upload")
-    Call<ResponseBody> uploadMultipartFile(@Part("keyname") String keyname, @Part MultipartBody.Part file);
+    Call<ResponseBody> uploadMultipartFile(@Part("keyname") RequestBody name , @Part MultipartBody.Part file);
 
     @DELETE("office/file/delete/{keyname}")
     Call<Void> deletePhotoS3(@Path("keyname") String keyname);

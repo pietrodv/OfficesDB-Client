@@ -42,13 +42,11 @@ public class OfficesAdapter extends RecyclerView.Adapter<OfficesAdapter.OfficeVi
 
         // set the data in items
         holder.titleTextView.setText((officesList.get(position).getTitle()));
-        holder.priceTextView.setText((officesList.get(position).getPrice()));
+        holder.priceTextView.setText((officesList.get(position).getPrice() + " €"));
         Picasso.get().load(officesList.get(position).getPhoto()).resize(180,120).into(holder.photoImageView);
 
         // implement setOnClickListener event on item view.
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        holder.itemView.setOnClickListener((View v) -> {
 
                 //Start a new Activity carrying the single item data
                 Intent goToEditOffice = new Intent(context, EditOfficeActivity.class);
@@ -56,8 +54,6 @@ public class OfficesAdapter extends RecyclerView.Adapter<OfficesAdapter.OfficeVi
                 bundle.putSerializable("OFFICE", officesList.get(position));
                 goToEditOffice.putExtras(bundle);
                 context.startActivity(goToEditOffice);
-
-            }
         });
 
     }

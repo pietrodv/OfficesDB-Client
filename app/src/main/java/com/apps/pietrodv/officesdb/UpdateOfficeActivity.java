@@ -22,6 +22,12 @@ public class UpdateOfficeActivity extends AppCompatActivity {
     Button loadAllMyOffices;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        allOffices();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_office);
@@ -33,17 +39,16 @@ public class UpdateOfficeActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
 
+        allOffices();
+
         //Connect the Button to the view
         loadAllMyOffices = findViewById(R.id.load_all_my_offices);
 
         //Set onClick
-        loadAllMyOffices.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        loadAllMyOffices.setOnClickListener((View v) -> {
 
                 allOffices();
 
-            }
         });
 
 
